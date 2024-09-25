@@ -18,7 +18,10 @@ import sys
 
 import click
 import yaml
-from pydantic import BaseModel, FilePath, ValidationError
+from pydantic import ValidationError
+
+from source.base import ConfigFilePath, Config
+from source.bot import Bot
 
 logging.basicConfig(
     filename='logs/app.log',
@@ -26,30 +29,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     filemode='a'  # Append mode
 )
-
-
-class DemoConfig(BaseModel):
-    """
-    Represents the 'demo' section of the configuration.
-    """
-
-    message: str
-
-
-class Config(BaseModel):
-    """
-    Represents the entire configuration file structure.
-    """
-
-    demo: DemoConfig
-
-
-class ConfigFilePath(BaseModel):
-    """
-    Represents the configuration file path.
-    """
-
-    path: FilePath
 
 
 def main(config_file_path: str):
@@ -80,6 +59,11 @@ def main(config_file_path: str):
         message = config.demo.message
         logging.info("Configuration loaded successfully. Message: %s", message)
         print(message)
+
+        bot = Bot(config=config)
+        bot.run()
+
+
 
     except ValidationError as e:
         logging.error("Validation error occurred: %s", e, exc_info=True)

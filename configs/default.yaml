@@ -1,2 +1,4 @@
 demo:
     message : "Hello World!"
+    token : "oauth:6i3mmf5x6vso3v904x3cbldawqgmpm"
+    channel : "yunkeed"

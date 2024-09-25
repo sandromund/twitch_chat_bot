@@ -2,6 +2,8 @@
 Template with my most used setup.
 
 
+https://twitchapps.com/tmi/
+
 ```shell
 mkdir source
 mkdir configs

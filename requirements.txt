@@ -3,3 +3,4 @@ pyyaml
 icecream
 pydantic
 pytest
+twitchio

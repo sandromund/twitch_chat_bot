@@ -1,18 +1,10 @@
 """
-This module provides functionality to read and validate a YAML configuration file,
-and then print a message from the 'demo' section of the configuration. It uses
-Pydantic for validation and Click for the command-line interface.
+This module serves as the main entry point for the application.
 
-Classes:
-    DemoConfig: Represents the 'demo' section of the configuration.
-    Config: Represents the entire configuration file structure.
-    ConfigFilePath: Represents the configuration file path.
-
-Functions:
-    main(config_file_path): Reads and validates the configuration file and prints a message.
-    cli(): A Click group to hold CLI commands.
-    run(config): A Click command to run the main function with the provided configuration file path.
+It initializes the necessary configurations and components such as the Twitch bot
+and AI integration, and starts the bot to listen and respond to commands in a Twitch chat.
 """
+
 import logging
 import sys
 
@@ -24,16 +16,16 @@ from source.base import ConfigFilePath, Config
 from source.bot import Bot
 
 logging.basicConfig(
-    filename='logs/app.log',
+    filename="logs/app.log",
     level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    filemode='a'  # Append mode
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    filemode="a",  # Append mode
 )
 
 
 def main(config_file_path: str):
     """
-    Reads and validates a YAML configuration file, then prints a message from the 'demo' section.
+    Reads and validates a YAML configuration file and starts the bot.
 
     Args:
         config_file_path (str): The path to the configuration YAML file.
@@ -55,15 +47,8 @@ def main(config_file_path: str):
         logging.debug("Validating YAML content")
         config = Config(**config_dict)
 
-        # Print the desired message
-        message = config.demo.message
-        logging.info("Configuration loaded successfully. Message: %s", message)
-        print(message)
-
         bot = Bot(config=config)
         bot.run()
-
-
 
     except ValidationError as e:
         logging.error("Validation error occurred: %s", e, exc_info=True)

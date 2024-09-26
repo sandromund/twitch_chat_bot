@@ -4,3 +4,4 @@ icecream
 pydantic
 pytest
 twitchio
+openai

@@ -1,4 +1,10 @@
-demo:
-    message : "Hello World!"
+twitch:
     token : "oauth:6i3mmf5x6vso3v904x3cbldawqgmpm"
     channel : "yunkeed"
+    prefix: "-"
+ai: # LMStudio
+    base_url : "http://localhost:1234/v1"
+    api_key : "lm-studio"
+    model : "TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF"
+    temperature : 0.7
+    personality : "You are a Twitch viewer who interacts with the chat in very short messages, being entertaining and funny."

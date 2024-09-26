@@ -1,29 +1,28 @@
-# python_template
-Template with my most used setup.
+# Twitch Chat Bot
+
+Bot that can chat with other users on Twitch.
 
 
-https://twitchapps.com/tmi/
+# Setup
 
-```shell
-mkdir source
-mkdir configs
-mkdir docs 
-mkdir resources 
-mkdir tests 
-mkdir logs
-```
-
-## Install
 ````shell
 pip install --upgrade pip
 pip install pylint black pyinstaller
 pip install -r requirements.txt
 ````
+1. Create a [Twitch](twitch.tv) Account and get a [Token](https://twitchapps.com/tmi/)
+2. Setup [LM Studio](https://lmstudio.ai/) and 
+   1. Install it and download a model
+   3. Run a local inference server
+3. Adapt the config file based on 1. and 2.
 
 ## Run
 ````shell
 python source/main.py run --config configs/default.yaml
 ````
+
+
+
 
 ## Development
 Lint
@@ -39,7 +38,6 @@ Format
 black source 
 black tests
 ````
-## Deployment
 Create an Exe
 ````shell
 pyinstaller --onefile source/main.py --name=app
